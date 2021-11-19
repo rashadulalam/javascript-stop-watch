@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Stop Watch</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1><span id="seconds">00</span>:<span id="tens">00</span></h1>
+
+    <button id="button-start">Start</button>
+    <button id="button-stop">Stop</button>
+    <button id="button-reset">Reset</button>
+
+
+
+    <script>
+        window.onload = function() {
+            var seconds = 0;
+            var tens = 0;
+
+            var appnedSeconds = document.getElementById("seconds");
+            var appnedTens = document.getElementById("tens");
+
+            var startBtn = document.getElementById("button-start");
+            var stoptBtn = document.getElementById("button-stop");
+            var resetBtn = document.getElementById("button-reset");
+
+            var Interval;
+            
+            startBtn.onclick = function() {
+                Interval = setInterval( startTimer, 10);
+            }
+
+            stoptBtn.onclick = function() {
+                clearInterval( Interval );
+            }
+
+            resetBtn.onclick = function() {
+                clearInterval( Interval );
+                tens = 0;
+                seconds = 0;
+                appnedSeconds.innerHTML = "0" + seconds;
+                appnedTens.innerHTML = "0" + tens;
+            }
+
+
+
+            function startTimer() {
+                tens++;
+
+                if( tens <= 9 ) {
+                    appnedTens.innerHTML = "0" + tens;
+                }
+
+                if( tens > 9 ) {
+                    appnedTens.innerHTML = tens;
+                }
+
+                if( tens > 99 ) {
+                    console.log("seconds");
+                    seconds++;
+                    appnedSeconds.innerHTML = "0" + seconds;
+                    tens = 0;
+                } 
+
+                if( seconds > 9 ) {
+                    appnedSeconds.innerHTML = seconds;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
